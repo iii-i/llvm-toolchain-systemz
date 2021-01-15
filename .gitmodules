@@ -1,0 +1,3 @@
+[submodule "llvm-toolchain"]
+	path = llvm-toolchain
+	url = https://salsa.debian.org/pkg-llvm-team/llvm-toolchain.git

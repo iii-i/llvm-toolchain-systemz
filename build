@@ -1,0 +1,6 @@
+#!/bin/bash
+set -e -u -x -o pipefail
+git submodule update --init
+podman build -t llvm-toolchain-builder image
+curl -L https://github.com/llvm/llvm-project/tarball/main/ | tar -C llvm-toolchain -xz --strip-components=1
+podman run -it --rm -v $PWD:$PWD -w $PWD/llvm-toolchain llvm-toolchain-builder debuild -i -us -uc -b
