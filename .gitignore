@@ -1,0 +1,8 @@
+*.build
+*.buildinfo
+*.changes
+*.ddeb
+*.deb
+*.dsc
+llvm-toolchain-snapshot_*/
+*.tar.xz

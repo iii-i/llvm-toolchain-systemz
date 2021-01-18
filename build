@@ -1,6 +1,14 @@
 #!/bin/bash
 set -e -u -x -o pipefail
 git submodule update --init
+(cd snapshot && \
+ git clean -dfx && \
+ git reset --hard && \
+ git fetch origin && \
+ git checkout origin/snapshot && \
+ patch -p1 <../iii.patch)
 podman build -t llvm-toolchain-builder image
-curl -L https://github.com/llvm/llvm-project/tarball/main/ | tar -C llvm-toolchain -xz --strip-components=1
-podman run -it --rm -v $PWD:$PWD -w $PWD/llvm-toolchain llvm-toolchain-builder debuild -i -us -uc -b
+podman run -it --rm -v "$PWD:$PWD" -w "$PWD" -e "DISTRIBUTION=bionic" llvm-toolchain-builder sh -x snapshot/debian/orig-tar.sh
+podman run -it --rm -v "$PWD:$PWD" -w "$PWD" llvm-toolchain-builder sh -x snapshot/debian/unpack.sh
+subdir=$(find . -maxdepth 1 -type d -name "llvm-toolchain-snapshot_*" | sort | tail -1)
+podman run -it --rm -v "$PWD:$PWD" -w "$PWD/$subdir" llvm-toolchain-builder debuild -i -us -uc -S

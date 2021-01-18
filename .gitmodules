@@ -1,3 +1,9 @@
 [submodule "llvm-toolchain"]
-	path = llvm-toolchain
+	path = snapshot
 	url = https://salsa.debian.org/pkg-llvm-team/llvm-toolchain.git
+[submodule "llvm-project"]
+	path = llvm-project
+	url = https://github.com/llvm/llvm-project.git
+[submodule "llvm-toolchain-integration-test-suite"]
+	path = llvm-toolchain-integration-test-suite
+	url = https://github.com/opencollab/llvm-toolchain-integration-test-suite.git

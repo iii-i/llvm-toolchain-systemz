@@ -1,0 +1,11 @@
+--- a/Utilities/cmcurl/CMakeLists.txt
++++ b/Utilities/cmcurl/CMakeLists.txt
+@@ -1457,7 +1457,7 @@
+ add_executable(curltest curltest.c)
+ target_link_libraries(curltest cmcurl)
+ 
+-if(BUILD_TESTING AND CMAKE_CURL_TEST_URL)
++if(0 AND BUILD_TESTING AND CMAKE_CURL_TEST_URL)
+   add_test(curl curltest ${CMAKE_CURL_TEST_URL})
+ endif()
+ 

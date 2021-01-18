@@ -1,0 +1,26 @@
+--- a/debian/control
++++ b/debian/control
+@@ -2,8 +2,8 @@ Source: llvm-toolchain-snapshot
+ Section: devel
+ Priority: optional
+ Rules-Requires-Root: no
+-Maintainer: LLVM Packaging Team <pkg-llvm-team@lists.alioth.debian.org>
+-Uploaders: Sylvestre Ledru <sylvestre@debian.org>, Gianfranco Costamagna <locutusofborg@debian.org>
++Maintainer: Ilya Leoshkevich <iii@linux.ibm.com>
++Uploaders: Ilya Leoshkevich <iii@linux.ibm.com>
+ Build-Depends: debhelper (>= 9.0), cmake, chrpath, texinfo, sharutils,
+     libffi-dev,
+     lsb-release, patchutils, diffstat, xz-utils, python3-dev,
+--- a/debian/orig-tar.sh
++++ b/debian/orig-tar.sh
+@@ -178,8 +178,8 @@ echo "Compressing to $FILENAME"
+ tar Jcf $CURRENT_PATH/"$FILENAME" --exclude .git --transform="s|llvm-project|$BASE|" -C $EXPORT_PATH llvm-project
+ rm -rf llvm-project/integration-test-suite
+ 
+-export DEBFULLNAME="Sylvestre Ledru"
+-export DEBEMAIL="sylvestre@debian.org"
++export DEBFULLNAME="Ilya Leoshkevich"
++export DEBEMAIL="iii@linux.ibm.com"
+ cd "$PATH_DEBIAN"
+ 
+ if test -z "$DISTRIBUTION"; then
