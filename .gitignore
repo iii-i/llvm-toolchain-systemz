@@ -6,3 +6,4 @@
 *.dsc
 llvm-toolchain-snapshot_*/
 *.tar.xz
+*.upload

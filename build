@@ -11,4 +11,5 @@ podman build -t llvm-toolchain-builder image
 podman run -it --rm -v "$PWD:$PWD" -w "$PWD" -e "DISTRIBUTION=bionic" llvm-toolchain-builder sh -x snapshot/debian/orig-tar.sh
 podman run -it --rm -v "$PWD:$PWD" -w "$PWD" llvm-toolchain-builder sh -x snapshot/debian/unpack.sh
 subdir=$(find . -maxdepth 1 -type d -name "llvm-toolchain-snapshot_*" | sort | tail -1)
+podman run -it --rm -v "$PWD:$PWD" -w "$PWD/$subdir" llvm-toolchain-builder dch --release --distribution bionic "PPA"
 podman run -it --rm -v "$PWD:$PWD" -w "$PWD/$subdir" llvm-toolchain-builder debuild -i -us -uc -S
